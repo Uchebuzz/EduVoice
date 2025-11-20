@@ -1,12 +1,16 @@
 
-📘 EduVoice – AI Agent for PDF-to-Audio Accessibility
+# 📘  EduVoice – AI Agent for PDF-to-Audio Accessibility
+___
+<br></br>
 Making Reading Accessible for Everyone
 
 5 day Agentic AI Competition for ** Slater_ Team**
 
 EduVoice is an AI-powered agent designed to convert PDFs into high-quality voice recordings, enabling blind and visually impaired learners to access written content easily and independently.
 
-🚨 Problem Statement
+## 🚨 Problem Statement
+___
+<br></br>
 
 Millions of blind and visually impaired people struggle with one core challenge:
 
@@ -28,7 +32,9 @@ Traditional screen readers fail or read content in the wrong order, making learn
 
 EduNarrator aims to solve this by giving visually impaired learners a way to “hear” any PDF, effortlessly.
 
-🎯 Solution Overview
+## 🎯 Solution Overview
+___
+<br></br>
 
 EduVoice is an agentic AI system that:
 
@@ -54,7 +60,10 @@ It allows blind learners to:
 
 Learn independently without waiting for assistance
 
-🧠 How It Works (Agent Architecture)
+## 🧠 How It Works (Agent Architecture)
+
+___
+<br></br>
 
 EduNarrator consists of five cooperating AI agents:
 
@@ -78,7 +87,10 @@ Uses advanced text-to-speech models (OpenAI / Google / ElevenLabs) to generate n
 
 Combines all generated audio chunks into a final MP3 file.
 
-🧩 Features
+## 🧩 Features
+___
+<br></br>
+
 ✔️ Accessibility-First Design
 
 Built for blind and low-vision users based on real accessibility challenges.
@@ -105,19 +117,21 @@ Multi-language voice output
 
 Optimized for rapid conversions.
 
-🚀 Tech Stack
+## 🚀 Tech Stack
 
-Python – backend orchestration
+- Python – backend orchestration
 
-React – frontend UI
+- React – frontend UI
 
-PDFBox – PDF extraction
+- PDFBox – PDF extraction
 
-FFmpeg – audio merging
+- FFmpeg – audio merging
 
 
 
-🛡️ License
+## 🛡️ License
+___
+<br></br>
 
 MIT License
 
