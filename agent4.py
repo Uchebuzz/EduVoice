@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 from typing import Optional
 
 from google.cloud import texttospeech
@@ -5,7 +7,11 @@ from google.assistant.agents import Agent
 from google.assistant.context import Context
 from google.assistant.skill import Skill
 
+# Set up Google Cloud credentials
+CREDENTIALS_PATH = Path(__file__).parent / "credentials" / "voice-agent-478712-ab0f02714681.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(CREDENTIALS_PATH)
 
+# Initialize the Text-to-Speech client
 client = texttospeech.TextToSpeechClient()
 
 
