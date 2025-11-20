@@ -1,0 +1,9 @@
+# Google Cloud Text-to-Speech
+google-cloud-texttospeech>=2.16.0
+
+# Google Assistant / Agent SDK
+# (replace with the actual package name if different, e.g. google-adk or google-assistant-sdk)
+google-assistant-agents>=0.1.0
+google-assistant-context>=0.1.0
+google-assistant-skill>=0.1.0
+
