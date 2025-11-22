@@ -7,7 +7,7 @@ import fitz
 
 # Configure your model
 
-genai.configure(api_key="AIzaSyBBBiYEgsrmRQEA_kFWI7lhW7u5zYXFvRg")
+genai.configure(api_key="your api key")
 
 #used diff models as they have some limits
 model = genai.GenerativeModel("gemini-2.5-flash") 
