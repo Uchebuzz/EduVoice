@@ -7,3 +7,7 @@ google-assistant-agents>=0.1.0
 google-assistant-context>=0.1.0
 google-assistant-skill>=0.1.0
 
+PyMuPDF>=1.24.0
+pymupdf4llm>=0.1.7
+Pillow>=10.0.0
+google-generativeai>=0.7.0
