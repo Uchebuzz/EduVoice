@@ -160,11 +160,9 @@ class PdfReaderAgent(Agent):
 
         cleaner = CleaningAgent()
         cleaned_output = cleaner.clean(combined)
-
-        with open("structured_output.md", "w", encoding="utf-8") as out:
-          out.write(cleaned_output)
-
-        print("🎉 Cleaning + Structuring complete! Saved → structured_output.md")
+        print("🎉 Cleaning + Structuring complete!)
+        return cleaned_output
+        
 
 
                 
