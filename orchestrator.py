@@ -1,8 +1,7 @@
 import os
-import sys
 
 from PdfReaderAgent import process_pdf_from_ui 
-from DocumentReader import process_word_doc_from_ui
+from DocumentReaderAgent import process_word_doc_from_ui
 
 def determine_file_extension(file_path: str) -> str:
     """

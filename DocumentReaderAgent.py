@@ -13,9 +13,9 @@ from google.adk.tools import FunctionTool
 
 # ==================== 1. Configure Gemini & Models ====================
 
-genai.configure(api_key="API KEY")
+genai.configure(api_key="AIzaSyDk4u-4y2-7RcibtnNIitehuxLgiMynGnc")
 vision_model = genai.GenerativeModel("gemini-2.5-flash")
-text_model = genai.GenerativeModel("gemini-2.0-flash")
+text_model = genai.GenerativeModel("gemini-2.0-flash-lite")
 
 # ==================== 2. Helper Functions (Image Handling) ====================
 
@@ -220,4 +220,4 @@ def process_word_doc_from_ui(doc_path: str) -> str:
     print("✅ Document processed successfully!")
     print("="*50)
     
-    return cleaned_output
+    return ""
