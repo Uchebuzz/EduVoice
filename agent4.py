@@ -3,9 +3,19 @@ from pathlib import Path
 from typing import Optional
 
 from google.cloud import texttospeech
-from google.assistant.agents import Agent
-from google.assistant.context import Context
-from google.assistant.skill import Skill
+
+# Optional imports for agent functionality (only needed when running agent4.py directly)
+try:
+    from google.assistant.agents import Agent
+    from google.assistant.context import Context
+    from google.assistant.skill import Skill
+    ASSISTANT_SDK_AVAILABLE = True
+except ImportError:
+    # Assistant SDK not available - agent functionality will be skipped
+    ASSISTANT_SDK_AVAILABLE = False
+    Agent = None
+    Context = None
+    Skill = None
 
 # Set up Google Cloud credentials
 CREDENTIALS_PATH = Path(__file__).parent / "credentials" / "voice-agent-478712-ab0f02714681.json"
@@ -61,41 +71,49 @@ def synthesize_speech(
     return response.audio_content
 
 
-class Agent4Skill(Skill):
-    """Skill that exposes a `speak_text` intent using Google Cloud TTS."""
+# Agent functionality - only available if Assistant SDK is installed
+if ASSISTANT_SDK_AVAILABLE and Skill and Agent:
+    class Agent4Skill(Skill):
+        """Skill that exposes a `speak_text` intent using Google Cloud TTS."""
 
-    def __init__(self) -> None:
-        super().__init__(name="Agent 4", description="Google TTS voice agent")
+        def __init__(self) -> None:
+            super().__init__(name="Agent 4", description="Google TTS voice agent")
 
-    @Skill.intent("speak_text")
-    async def speak_out(self, context: Context) -> Context:
-        """Handle the `speak_text` intent."""
+        @Skill.intent("speak_text")
+        async def speak_out(self, context: Context) -> Context:
+            """Handle the `speak_text` intent."""
 
-        text_speak: Optional[str] = context.slot("text_speak")
-        voice_gender: str = context.slot("voice_gender") or "NEUTRAL"
-        language_code: str = context.slot("language_code") or "en-US"
+            text_speak: Optional[str] = context.slot("text_speak")
+            voice_gender: str = context.slot("voice_gender") or "NEUTRAL"
+            language_code: str = context.slot("language_code") or "en-US"
 
-        if not text_speak:
-            await context.speak("I didn't receive any text to speak.")
+            if not text_speak:
+                await context.speak("I didn't receive any text to speak.")
+                return context.done()
+
+            audio_content = synthesize_speech(
+                text=text_speak,
+                gender=voice_gender,
+                language=language_code,
+            )
+
+            await context.speak_audio(audio_content)
+
             return context.done()
 
-        audio_content = synthesize_speech(
-            text=text_speak,
-            gender=voice_gender,
-            language=language_code,
-        )
 
-        await context.speak_audio(audio_content)
+    agent = Agent(
+        name="Agent 4",
+        description="Google TTS voice agent using Cloud Text-to-Speech.",
+        skills=[Agent4Skill()],
+    )
 
-        return context.done()
-
-
-agent = Agent(
-    name="Agent 4",
-    description="Google TTS voice agent using Cloud Text-to-Speech.",
-    skills=[Agent4Skill()],
-)
-
-
-if __name__ == "__main__":
-    agent.run()
+    if __name__ == "__main__":
+        agent.run()
+else:
+    # Assistant SDK not available - agent functionality skipped
+    agent = None
+    
+    if __name__ == "__main__":
+        print("⚠️ Google Assistant SDK not available. Install google-assistant-sdk to use agent functionality.")
+        print("   The synthesize_speech function is still available for direct use.")
