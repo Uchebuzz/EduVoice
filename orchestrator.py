@@ -3,8 +3,9 @@ from PdfReaderAgent import PdfReaderAgent
 from DocumentReaderAgent import DocumentReaderAgent
 
 import google.generativeai as genai
+from config import GEMINI_API_KEY
 
-genai.configure(api_key="API_KEY")
+genai.configure(api_key=GEMINI_API_KEY)
 text_model = genai.GenerativeModel("gemini-2.0-flash-lite-preview")
 
 class Orchestrator:
@@ -28,7 +29,6 @@ class Orchestrator:
 
         response = text_model.generate_content(prompt)
       
-
         chosen_agent = response.text.strip()
         print(chosen_agent)
 

@@ -10,9 +10,11 @@ import google.generativeai as genai
 from google.adk.agents import Agent
 from google.adk.tools import FunctionTool 
 
+from config import GEMINI_API_KEY
+
 # ==================== 1. Configure Gemini & Models ====================
 
-genai.configure(api_key="API_KEY")
+genai.configure(api_key=GEMINI_API_KEY)
 vision_model = genai.GenerativeModel("gemini-2.5-flash")
 text_model = genai.GenerativeModel("gemini-2.0-flash-lite-preview")
 
@@ -59,7 +61,9 @@ class PdfReaderAgent(Agent):
         print("cleaning raw text...")
         for line in lines:
             stripped = line.strip()
-            if chapter_pattern.match(stripped):
+            match = chapter_pattern.match(stripped)
+            if match :
+                stripped = stripped.lstrip("# ").strip()
                 if chapter_active:
                     cleaned.append("\n--- END OF CHAPTER ---\n")
                 chapter_active = True
