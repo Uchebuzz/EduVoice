@@ -4,6 +4,9 @@ google-cloud-texttospeech>=2.16.0
 # Google Agent Development Kit (ADK)
 google-adk>=0.1.0
 
+# Google Agent Development Kit (ADK)
+google-adk>=0.1.0
+
 # Google Assistant / Agent SDK
 google-assistant-sdk>=0.1.0
 google-assistant-context>=0.1.0
