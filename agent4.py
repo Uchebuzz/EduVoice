@@ -17,6 +17,19 @@ except ImportError:
     Context = None
     Skill = None
 
+# Optional imports for agent functionality (only needed when running agent4.py directly)
+try:
+    from google.assistant.agents import Agent
+    from google.assistant.context import Context
+    from google.assistant.skill import Skill
+    ASSISTANT_SDK_AVAILABLE = True
+except ImportError:
+    # Assistant SDK not available - agent functionality will be skipped
+    ASSISTANT_SDK_AVAILABLE = False
+    Agent = None
+    Context = None
+    Skill = None
+
 # Set up Google Cloud credentials
 CREDENTIALS_PATH = Path(__file__).parent / "credentials" / "voice-agent-478712-ab0f02714681.json"
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(CREDENTIALS_PATH)
