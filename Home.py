@@ -1,10 +1,10 @@
+# streamlit_app.py
 import streamlit as st
-import os
 import tempfile
-from pathlib import Path
-from orchestrator import run_document_orchestrator
-from chunker import chunk_text_for_narration
+from orchestrator import Orchestrator
 
+
+orchestrator = Orchestrator()
 
 st.set_page_config(page_title="Accessible AI Agent", layout="wide")
 
@@ -50,19 +50,18 @@ if uploaded_file is not None:
         tmp_file.write(uploaded_file.getvalue())
         st.session_state.temp_file_path = tmp_file.name
 
-    st.success("File Uploaded. Starting AI Agents...")
+    st.success("File Uploaded ",icon='✅')
     
     if st.button("Start Processing"):
 
         with st.spinner("Agents are working... (Read -> Vision -> Clean -> Chunk -> Audio)"):
-                final_output = run_document_orchestrator(tmp_file_path)  
+                final_output = orchestrator.route_task(tmp_file_path)  
 
-                st.success("File reading done. Chunking...")
-                chunks = chunk_text_for_narration(final_output)
-                print(len(chunks))
+                st.success("File reading done.", icon='✅')
+
                 st.divider()
                 st.header("🎧 Results")
         
 
 st.divider()
-st.caption("Powered by Google Vertex AI, Gemini Models & Google Cloud Text-to-Speech")
+st.caption("Copyright EduNarrator")
