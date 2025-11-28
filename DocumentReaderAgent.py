@@ -13,7 +13,7 @@ from google.adk.tools import FunctionTool
 
 # ==================== 1. Configure Gemini & Models ====================
 
-genai.configure(api_key="AIzaSyDk4u-4y2-7RcibtnNIitehuxLgiMynGnc")
+genai.configure(api_key="API_KEY")
 vision_model = genai.GenerativeModel("gemini-2.5-flash")
 text_model = genai.GenerativeModel("gemini-2.0-flash-lite")
 
