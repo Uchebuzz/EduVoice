@@ -3,6 +3,7 @@ import pymupdf4llm
 from PIL import Image
 import io
 from pdf2image import convert_from_path
+#needs tesseract-ocr and poppler
 import pytesseract
 import re
 import google.generativeai as genai
