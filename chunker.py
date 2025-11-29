@@ -84,8 +84,5 @@ def split_oversized_paragraph_by_sentence(paragraph: str) -> List[str]:
         
     return sub_chunks
 
-
-
- 
     
     
