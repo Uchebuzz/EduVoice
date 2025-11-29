@@ -10,7 +10,7 @@ narrator = NarratorAgent()
 st.set_page_config(page_title="EduNarrator", layout="wide")
 st.title("EduNarrator")
 
-st.sidebar.markdown("Upload a PDF to receive full narration.")
+st.sidebar.markdown("Upload a PDF or Word Document to receive full narration.")
 st.markdown(
     "<span style='font-size:17px; font-weight:600;'>🎧 This system produces complete, accessible narration to help blind and visually impaired students learn independently.</span>",
     unsafe_allow_html=True
@@ -40,7 +40,7 @@ for k, v in defaults.items():
     st.session_state.setdefault(k, v)
 
 # -------------------- upload UI -------------------
-uploaded_file = st.file_uploader("Upload a PDF or DOCX", type=["pdf", "docx", "doc"])
+uploaded_file = st.file_uploader("Upload a PDF or DOCX", type=["pdf", "docx"])
 
 # If user uploads a new file, save once and set flags. DON'T re-run this on ordinary reruns.
 if uploaded_file is not None:
