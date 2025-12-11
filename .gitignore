@@ -30,4 +30,4 @@ Thumbs.db
 *.wav
 
 .env
-
+.toml
