@@ -1,15 +1,29 @@
 import os
+import json
+import tempfile
 from pathlib import Path
 from audio_merger import merge_audio_files
+import streamlit as st
 
 from google.cloud import texttospeech
 from google.adk.agents import Agent
 from google.adk.tools import FunctionTool
 
 
-# Set up Google Cloud credentials
-CREDENTIALS_PATH = Path(__file__).parent / "credentials" / "voice-agent-478712-ab0f02714681.json"
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(CREDENTIALS_PATH)
+# Set up Google Cloud credentials from Streamlit secrets
+credentials_data = st.secrets["credentials"]
+if isinstance(credentials_data, str):
+    credentials_dict = json.loads(credentials_data)
+else:
+    credentials_dict = credentials_data
+
+# Write credentials to temporary file
+with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp_file:
+    json.dump(credentials_dict, temp_file)
+    CREDENTIALS_PATH = temp_file.name
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = CREDENTIALS_PATH
+
 
 # Initialize the Text-to-Speech client
 client = texttospeech.TextToSpeechClient()
